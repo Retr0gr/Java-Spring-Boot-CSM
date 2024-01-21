@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="manager/manager_base::layout(~{::section})">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+</head>
+<body>
+<section>
+<h2>Employees:</h2>
+
+
+<form th:action="@{/manager/emp-customers}" method="post" th:object="${employees}">
+    <button type="submit" name="action" value="viewCustomers" class="btn btn-dark">View Employee's Customers</button>
+    <table class="table table-striped table-bordered">
+        <tr>
+            <td></td>
+            <td>Id</td>
+            <td>Username</td>
+        </tr>
+        <th:block th:each="employee : ${employees}">
+            <tr>
+                <td><input type="checkbox" id="employeeId" name="employeeId" th:value="${employee.getId()}"></td>
+                <td th:text="${employee.getId()}"></td>
+                <td th:text="${employee.getUsername()}"></td>
+            </tr>
+        </th:block>
+    </table>
+</form>
+</section>
+</body>
+</html>

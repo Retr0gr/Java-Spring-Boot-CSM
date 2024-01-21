@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="admin/admin_base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+    </style>
+</head>
+<body>
+<section>
+    <h4>Customers:</h4>
+
+    <form th:action="@{/admin/search}" method="get">
+        <input type="text" name="keyword" th:value="${keyword}"  placeholder="Find by name" size="50" >
+        <input type="checkbox" id="isCustomer" name="isCustomer" th:value="isCustomer">
+        <label for="isCustomer">Only Customers </label>
+        <button type="submit" class="btn btn-dark" >Search</button>
+        <button type="submit" class="btn btn-dark" >Reset</button>
+    </form>
+    <br>
+
+    <form th:action="@{/admin/customers}" method="post" th:object="${customers}">
+        <button class="btn btn-dark" type="submit" name="action" value="delete">Delete Customer</button>
+        <button class="btn btn-dark" type="submit" name="action" value="edit">Edit Customer</button>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <td><input type="checkbox" onclick="toggle(this)">CheckAll</td>
+            <td>Name</td>
+            <td>Birthdate</td>
+            <td>Became Customer</td>
+            <td>Last Contact</td>
+            <td>Employee Id</td>
+        </tr>
+        </thead>
+        <th:block th:each="customer : ${customers}">
+            <tr>
+                <td><input type="checkbox" id="customerId" name="customerId" th:value="${customer.getId()}"></td>
+                <td th:text="${customer.getName()}"></td>
+                <td th:text="${customer.getBirthdate()}"></td>
+                <td th:text="${customer.getBecame_customer()}"></td>
+                <td th:text="${customer.getLast_contact()}"></td>
+                <td th:text="${customer.getUser().getUsername()}"></td>
+            </tr>
+        </th:block>
+    </table>
+    </form>
+    <script>
+        function toggle(source) {
+            var checkboxes = document.getElementsByName('customerId');
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i] != source)
+                    checkboxes[i].checked = source.checked;
+            }
+        }
+    </script>
+</section>
+
+</body>
+</html>

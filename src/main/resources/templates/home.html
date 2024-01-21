@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="employee_base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">View Customers</h5>
+                        <p class="card-text">View, Search, Delete, and Edit Customers.</p>
+                        <a href="/employee/customers" class="btn btn-primary">Customers</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">View Contacts</h5>
+                        <p class="card-text">View, Search, Delete, Add, and Edit Contacts</p>
+                        <a href="/employee/contacts" class="btn btn-primary">Users</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Add Customer</h5>
+                        <p class="card-text">Add new Customers</p>
+                        <a href="/employee/add_customer" class="btn btn-primary">Add Customers</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
